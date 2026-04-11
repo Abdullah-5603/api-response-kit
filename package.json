@@ -1,14 +1,15 @@
 {
-  "name": "api-response-kit",
+  "name": "@abdullah/api-response-kit",
   "version": "0.1.0",
-  "description": "Small, dependency-light helpers for standardized API responses in Node.js and Express-style backends.",
+  "description": "Small, dependency-light TypeScript helpers for standardized API responses in Node.js and Express-style backends.",
   "keywords": [
     "api",
     "response",
     "express",
     "node",
     "http",
-    "json"
+    "json",
+    "typescript"
   ],
   "homepage": "https://github.com/Abdullah-5603/api-response-kit#readme",
   "repository": {
@@ -21,19 +22,22 @@
   "license": "MIT",
   "author": "Abdullah",
   "type": "module",
+  "packageManager": "npm@11.11.0",
   "sideEffects": false,
-  "main": "./index.cjs",
-  "module": "./src/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./src/index.js",
-      "require": "./index.cjs",
-      "default": "./src/index.js"
-    }
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
-    "src",
-    "index.cjs",
+    "dist",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
@@ -41,12 +45,24 @@
   "engines": {
     "node": ">=18"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
+    "clean": "node ./scripts/clean.mjs",
+    "build": "tsup",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "eslint .",
+    "lint": "prettier --check .",
     "format": "prettier --write .",
-    "prepublishOnly": "npm run lint && npm run test"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run clean && npm run lint && npm run typecheck && npm run test && npm run build"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "prettier": "^3.8.2",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.4"
+  }
 }
