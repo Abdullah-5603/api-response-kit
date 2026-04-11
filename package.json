@@ -1,0 +1,52 @@
+{
+  "name": "api-response-kit",
+  "version": "0.1.0",
+  "description": "Small, dependency-light helpers for standardized API responses in Node.js and Express-style backends.",
+  "keywords": [
+    "api",
+    "response",
+    "express",
+    "node",
+    "http",
+    "json"
+  ],
+  "homepage": "https://github.com/Abdullah-5603/api-response-kit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdullah-5603/api-response-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Abdullah-5603/api-response-kit/issues"
+  },
+  "license": "MIT",
+  "author": "Abdullah",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./index.cjs",
+  "module": "./src/index.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./index.cjs",
+      "default": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "index.cjs",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "prepublishOnly": "npm run lint && npm run test"
+  },
+  "devDependencies": {}
+}
