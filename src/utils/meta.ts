@@ -1,13 +1,14 @@
-import { cloneValue, isPlainObject } from './object.js';
+import type { Meta } from '../types';
+
+import { cloneValue, isPlainObject } from './object';
 
 /**
- * Merge meta objects from left to right without mutation.
- *
- * @param {...Record<string, unknown>} metaObjects
- * @returns {Record<string, unknown>|undefined}
+ * Merge meta objects from left to right without mutating inputs.
  */
-export function mergeMeta(...metaObjects) {
-  const merged = {};
+export function mergeMeta(
+  ...metaObjects: Array<Meta | undefined>
+): Meta | undefined {
+  const merged: Meta = {};
 
   for (const metaObject of metaObjects) {
     if (metaObject === undefined) {

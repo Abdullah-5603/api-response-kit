@@ -1,13 +1,14 @@
-import { assertStatusCode, isPlainObject } from './utils/index.js';
+import type { ApiResponse, ExpressLikeResponse } from './types';
+
+import { assertStatusCode, isPlainObject } from './utils';
 
 /**
  * Send a standardized payload with an Express-style response object.
- *
- * @param {object} res
- * @param {object} payload
- * @returns {*}
  */
-export function send(res, payload) {
+export function send<TPayload extends ApiResponse>(
+  res: ExpressLikeResponse<TPayload>,
+  payload: TPayload
+): unknown {
   if (!res || typeof res !== 'object') {
     throw new TypeError('Expected "res" to be an object.');
   }
@@ -24,19 +25,21 @@ export function send(res, payload) {
 
   assertStatusCode(statusCode);
 
+  const response = res.status(statusCode);
+
   if (statusCode === 204) {
-    if (typeof res.send !== 'function') {
+    if (!response || typeof response.send !== 'function') {
       throw new TypeError(
         'Expected "res.send" to be a function for 204 responses.'
       );
     }
 
-    return res.status(204).send();
+    return response.send();
   }
 
-  if (typeof res.json !== 'function') {
+  if (!response || typeof response.json !== 'function') {
     throw new TypeError('Expected "res.json" to be a function.');
   }
 
-  return res.status(statusCode).json(payload);
+  return response.json(payload);
 }

@@ -1,11 +1,22 @@
-import { createResponse } from './base.js';
+import type { ErrorResponse, Meta } from '../types';
 
-function createErrorBuilder(statusCode, defaultMessage) {
-  /**
-   * @param {string} [message]
-   * @param {Record<string, unknown>} [meta]
-   * @returns {object}
-   */
+import { createResponse } from './base';
+
+type ErrorBuilder<TStatusCode extends number> = (
+  message?: string,
+  meta?: Meta
+) => ErrorResponse<unknown, TStatusCode>;
+
+type ErrorWithErrorsBuilder<TStatusCode extends number> = <TErrors = unknown>(
+  message?: string,
+  errors?: TErrors,
+  meta?: Meta
+) => ErrorResponse<TErrors, TStatusCode>;
+
+function createErrorBuilder<TStatusCode extends number>(
+  statusCode: TStatusCode,
+  defaultMessage: string
+): ErrorBuilder<TStatusCode> {
   return function buildError(message, meta) {
     return createResponse({
       success: false,
@@ -17,13 +28,10 @@ function createErrorBuilder(statusCode, defaultMessage) {
   };
 }
 
-function createErrorWithErrorsBuilder(statusCode, defaultMessage) {
-  /**
-   * @param {string} [message]
-   * @param {*} [errors]
-   * @param {Record<string, unknown>} [meta]
-   * @returns {object}
-   */
+function createErrorWithErrorsBuilder<TStatusCode extends number>(
+  statusCode: TStatusCode,
+  defaultMessage: string
+): ErrorWithErrorsBuilder<TStatusCode> {
   return function buildError(message, errors, meta) {
     return createResponse({
       success: false,
