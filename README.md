@@ -1,21 +1,21 @@
-# @abdullah/api-response-kit
+# @abdullah5603/api-response-kit
 
 Small, dependency-light TypeScript helpers for standardized API responses in Node.js and Express-style backends.
 
 ## Purpose
 
-`@abdullah/api-response-kit` gives you a compact set of response builders that keep API payloads consistent across services, controllers, and middleware. It is ESM-first, ships CommonJS output, generates declaration files, and keeps runtime dependencies at zero.
+`@abdullah5603/api-response-kit` gives you a compact set of response builders that keep API payloads consistent across services, controllers, and middleware. It is ESM-first, ships CommonJS output, generates declaration files, and keeps runtime dependencies at zero.
 
 ## Installation
 
 ```bash
-npm install @abdullah/api-response-kit
+npm install @abdullah5603/api-response-kit
 ```
 
 ## Quick Start
 
 ```ts
-import { badRequest, ok } from '@abdullah/api-response-kit';
+import { badRequest, ok } from '@abdullah5603/api-response-kit';
 
 const success = ok(
   {
@@ -113,7 +113,7 @@ Error payloads look like this:
 ## Express Usage
 
 ```ts
-import { notFound, ok, send } from '@abdullah/api-response-kit';
+import { notFound, ok, send } from '@abdullah5603/api-response-kit';
 
 export async function getUser(req, res) {
   const user = await findUserById(req.params.id);
@@ -131,7 +131,7 @@ export async function getUser(req, res) {
 ## Custom Response Example
 
 ```ts
-import { custom } from '@abdullah/api-response-kit';
+import { custom } from '@abdullah5603/api-response-kit';
 
 const payload = custom({
   success: false,
@@ -145,7 +145,7 @@ const payload = custom({
 ## Pagination Example
 
 ```ts
-import { mergeMeta, ok, paginationMeta } from '@abdullah/api-response-kit';
+import { mergeMeta, ok, paginationMeta } from '@abdullah5603/api-response-kit';
 
 const meta = mergeMeta(paginationMeta({ page: 2, limit: 25, total: 87 }), {
   request_id: 'req_page_2',
@@ -163,8 +163,8 @@ const payload = ok(
 ## TypeScript Usage Example
 
 ```ts
-import type { SuccessResponse } from '@abdullah/api-response-kit';
-import { ok } from '@abdullah/api-response-kit';
+import type { SuccessResponse } from '@abdullah5603/api-response-kit';
+import { ok } from '@abdullah5603/api-response-kit';
 
 type User = {
   id: string;
@@ -184,7 +184,7 @@ import {
   badRequest,
   tooManyRequests,
   unprocessableEntity,
-} from '@abdullah/api-response-kit';
+} from '@abdullah5603/api-response-kit';
 
 badRequest('Missing fields', [{ field: 'email' }]);
 unprocessableEntity('Invalid input', { email: ['Already used'] });
@@ -211,7 +211,7 @@ tooManyRequests();
 
 ## Publishing Notes
 
-- The package is scoped and intended for public npm publishing: `@abdullah/api-response-kit`.
+- The package is scoped and intended for public npm publishing: `@abdullah5603/api-response-kit`.
 - Build output is generated into `dist/`.
 - Declaration files are emitted alongside the ESM and CommonJS builds.
 - `prepublishOnly` runs clean, lint, typecheck, tests, and build before publishing.
