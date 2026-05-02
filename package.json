@@ -1,6 +1,6 @@
 {
   "name": "@abdullah5603/api-response-kit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Small, dependency-light TypeScript helpers for standardized API responses in Node.js and Express-style backends.",
   "keywords": [
     "api",
