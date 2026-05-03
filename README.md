@@ -209,6 +209,43 @@ tooManyRequests();
 - Keeps the public API intentionally small.
 - Treats invalid usage as a developer error with explicit exceptions.
 
+## Contributing
+
+We welcome contributions! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to get started.
+
+### Code of Conduct
+
+This project adheres to the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+
+### Development
+
+To set up the development environment:
+
+```bash
+git clone https://github.com/Abdullah-5603/api-response-kit.git
+cd api-response-kit
+npm install
+npm run test:watch
+```
+
+### Local Testing
+
+Run tests in watch mode during development:
+
+```bash
+npm run test:watch
+```
+
+Run the full validation suite before submitting PRs:
+
+```bash
+npm run format && npm run lint && npm run typecheck && npm run test && npm run build
+```
+
+## Security
+
+Please report security vulnerabilities privately. See [SECURITY.md](SECURITY.md) for details.
+
 ## Publishing Notes
 
 - The package is scoped and intended for public npm publishing: `@abdullah5603/api-response-kit`.
